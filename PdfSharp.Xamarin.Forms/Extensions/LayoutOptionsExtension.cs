@@ -34,5 +34,14 @@ namespace PdfSharp.Xamarin.Forms.Extensions
 					return XLineAlignment.BaseLine;
 			}
 		}
+
+		public static XStringFormat ToXStringFormat(this TextAlignment alignment)
+		{
+			return new XStringFormat
+			{
+				Alignment = alignment.ToXStringAlignment(),
+				LineAlignment = alignment.ToXLineAlignment(),
+			};
+		}
 	}
 }
