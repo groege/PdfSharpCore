@@ -21,7 +21,7 @@ namespace PdfSharp.Xamarin.Forms.Renderers
 					DrawForiOS(page, searchBar, bounds, scaleFactor);
 					break;
 				case Device.UWP:
-				case Device.WinRT:
+				case Device.WPF:
 				default:
 					DrawForUWP(page, searchBar, bounds, scaleFactor);
 					break;
