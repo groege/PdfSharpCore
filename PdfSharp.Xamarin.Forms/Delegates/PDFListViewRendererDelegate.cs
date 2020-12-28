@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using PdfSharp.Xamarin.Forms.Extensions;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Fonts;
 using Xamarin.Forms;
