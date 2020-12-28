@@ -7,6 +7,7 @@ PdfSharp.Xamarin.Forms
 > - UWP
 > - Android
 > - iOS
+> - WPF
 
 
 ### Screenshots ([see all](https://github.com/akgulebubekir/PDFSharp.Xamarin.Forms/tree/master/Screenshots))
@@ -33,6 +34,10 @@ PdfSharp.Xamarin.Forms
 
 ### ListView Rendering
 > - Due ListView Cell is not accesible from parent, you should implement a `PdfListViewRendererDelegate` for the `ListView`.
+
+
+### Known Issues
+> - Fonts are bigger than usual for WPF Platform
 
 ```xml
 

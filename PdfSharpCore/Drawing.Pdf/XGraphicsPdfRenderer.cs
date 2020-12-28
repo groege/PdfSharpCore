@@ -393,7 +393,7 @@ namespace PdfSharpCore.Drawing.Pdf
             if (pen == null && brush == null)
                 throw new ArgumentNullException("pen");
 
-#if CORE
+#if CORE || PORTABLE
             Realize(pen, brush);
             AppendPath(path._corePath);
             AppendStrokeFill(pen, brush, path.FillMode, false);

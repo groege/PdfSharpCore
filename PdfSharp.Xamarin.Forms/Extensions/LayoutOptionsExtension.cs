@@ -1,7 +1,7 @@
 ﻿using PdfSharpCore.Drawing;
 using Xamarin.Forms;
 
-namespace PdfSharp.Xamarin.Forms
+namespace PdfSharp.Xamarin.Forms.Extensions
 {
 	public static class LayoutOptionsExtension
 	{
@@ -33,6 +33,15 @@ namespace PdfSharp.Xamarin.Forms
 				default:
 					return XLineAlignment.BaseLine;
 			}
+		}
+
+		public static XStringFormat ToXStringFormat(this TextAlignment alignment)
+		{
+			return new XStringFormat
+			{
+				Alignment = alignment.ToXStringAlignment(),
+				LineAlignment = alignment.ToXLineAlignment(),
+			};
 		}
 	}
 }

@@ -49,6 +49,7 @@ namespace PdfSharp.Xamarin.Sample.UWP
 				rootFrame.NavigationFailed += OnNavigationFailed;
 
 				PdfSharp.Xamarin.Forms.UWP.Platform.Init();
+				global::Xamarin.Forms.Forms.SetFlags("Shapes_Experimental", "RadioButton_Experimental");
 				global::Xamarin.Forms.Forms.Init(e);
 
 				if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
