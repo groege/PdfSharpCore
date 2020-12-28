@@ -1,7 +1,7 @@
 ﻿using PdfSharpCore.Drawing;
 using Xamarin.Forms;
 
-namespace PdfSharp.Xamarin.Forms
+namespace PdfSharp.Xamarin.Forms.Extensions
 {
 	public static class PointExtension
 	{

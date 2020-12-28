@@ -13,11 +13,12 @@ namespace PdfSharp.Xamarin.Forms
 	internal class PdfGenerator
 	{
 		#region Fields
-		double _scaleFactor;
-		XRect _desiredPageSize;
-		PageOrientation _orientation;
-		PageSize _pageSize;
-		View _rootView;
+
+		readonly double _scaleFactor;
+		readonly XRect _desiredPageSize;
+		readonly PageOrientation _orientation;
+		readonly PageSize _pageSize;
+		readonly View _rootView;
 
 		List<ViewInfo> _viewsToDraw;
 		#endregion
@@ -54,8 +55,9 @@ namespace PdfSharp.Xamarin.Forms
 			Point newOffset = new Point(pageOffset.X + view.X * _scaleFactor + invisiblesOffsetTreshold.X,
 										pageOffset.Y + view.Y * _scaleFactor + invisiblesOffsetTreshold.Y);
 
-			Rectangle bounds = new Rectangle(newOffset, new Size(view.Bounds.Width * _scaleFactor, view.Bounds.Height * _scaleFactor));
-			_viewsToDraw.Add(new ViewInfo { View = view, Offset = newOffset, Bounds = bounds });
+			Rectangle bounds = new Rectangle(newOffset,
+				new Size(view.Bounds.Width * _scaleFactor, view.Bounds.Height * _scaleFactor));
+			_viewsToDraw.Add(new ViewInfo {View = view, Offset = newOffset, Bounds = bounds});
 
 			if (view is ListView)
 			{
@@ -115,34 +117,34 @@ namespace PdfSharp.Xamarin.Forms
 				//add extra space for writing all listView cells into UI
 				if (desiredHeight > listView.Bounds.Height)
 					invisiblesOffsetTreshold.Y += (desiredHeight - listView.Bounds.Height) * _scaleFactor;
-
 			}
-			if (view is Layout<View>)
+			if (view is Layout<View> layout)
 			{
-				foreach (var v in (view as Layout<View>).Children)
+				foreach (var v in layout.Children)
+				{
 					VisitView(v, newOffset);
+				}
 			}
-			else if (view is Frame && (view as Frame).Content != null)
+			else if (view is Frame frame && frame.Content != null)
 			{
-				VisitView((view as Frame).Content, newOffset);
+				VisitView(frame.Content, newOffset);
 			}
-			else if (view is ContentView && (view as ContentView).Content != null)
+			else if (view is ContentView contentView && contentView.Content != null)
 			{
-				VisitView((view as ContentView).Content, newOffset);
+				VisitView(contentView.Content, newOffset);
 			}
-			else if (view is ScrollView && (view as ScrollView).Content != null)
+			else if (view is ScrollView scrollView && scrollView.Content != null)
 			{
-				VisitView((view as ScrollView).Content, newOffset);
+				VisitView(scrollView.Content, newOffset);
 			}
 		}
 
 
-
 		private PdfDocument CreatePDF(List<ViewInfo> views)
 		{
-			var document = new PdfDocument() { };
+			var document = new PdfDocument();
 
-			int numberOfPages = (int)Math.Ceiling(_viewsToDraw.Max(x => x.Offset.Y + x.View.HeightRequest * _scaleFactor) / _desiredPageSize.Height);
+			int numberOfPages = (int) Math.Ceiling(_viewsToDraw.Max(x => x.Offset.Y + x.View.HeightRequest * _scaleFactor) / _desiredPageSize.Height);
 
 			for (int i = 0; i < numberOfPages; i++)
 			{
@@ -155,16 +157,14 @@ namespace PdfSharp.Xamarin.Forms
 
 				foreach (var v in viewsInPage)
 				{
-
 					var rList = PDFManager.Instance.Renderers.FirstOrDefault(x => x.Key == v.View.GetType());
 					//Draw ListView Content With Delegate
-					if (v is ListViewInfo)
+					if (v is ListViewInfo vInfo)
 					{
-						var vInfo = v as ListViewInfo;
-						XRect desiredBounds = new XRect(v.Offset.X + _desiredPageSize.X,
-														v.Offset.Y + _desiredPageSize.Y - (i * _desiredPageSize.Height),
-														v.Bounds.Width,
-														v.Bounds.Height);
+						XRect desiredBounds = new XRect(vInfo.Offset.X + _desiredPageSize.X,
+														vInfo.Offset.Y + _desiredPageSize.Y - (i * _desiredPageSize.Height),
+														vInfo.Bounds.Width,
+														vInfo.Bounds.Height);
 						switch (vInfo.ItemType)
 						{
 							case ListViewItemType.Cell:
@@ -190,7 +190,6 @@ namespace PdfSharp.Xamarin.Forms
 
 						renderer.CreateLayout(gfx, v.View, desiredBounds, _scaleFactor);
 					}
-
 				}
 			}
 

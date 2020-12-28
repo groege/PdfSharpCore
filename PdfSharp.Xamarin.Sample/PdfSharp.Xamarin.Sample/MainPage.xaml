@@ -1,91 +1,123 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pdf="clr-namespace:PdfSharp.Xamarin.Forms;assembly=PdfSharp.Xamarin.Forms"
-             x:Class="PdfSharp.Xamarin.Sample.MainPage" Padding="15">
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			xmlns:pdf="clr-namespace:PdfSharp.Xamarin.Forms;assembly=PdfSharp.Xamarin.Forms"
+			x:Class="PdfSharp.Xamarin.Sample.MainPage" Padding="15">
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<Style x:Key="TitleStyle" TargetType="Label">
-				<Setter Property="TextColor" Value="Black"/>
-				<Setter Property="FontSize" Value="Medium"/>
-				<Setter Property="HorizontalOptions" Value="Center"/>
-				<Setter Property="VerticalOptions" Value="Center"/>
+				<Setter Property="TextColor" Value="Black" />
+				<Setter Property="FontSize" Value="Medium" />
+				<Setter Property="HorizontalOptions" Value="Center" />
+				<Setter Property="VerticalOptions" Value="Center" />
 			</Style>
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
 		<Grid x:Name="mainGrid" MinimumHeightRequest="900">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="40"/>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="40" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 
 			<!--#region Titles-->
-			<Label Grid.Row="0" Grid.Column="0" Text="Label" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="0" Grid.Column="1" Text="Button" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="0" Grid.Column="2" Text="Entry" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="2" Grid.Column="0" Text="SearchBar" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="2" Grid.Column="1" Text="ProgressBar" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="2" Grid.Column="2" Text="Picker" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="4" Grid.Column="0" Text="Image" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="4" Grid.Column="1" Text="ContentView" Style="{StaticResource TitleStyle}"/>
-			<Label Grid.Row="4" Grid.Column="2" Text="Editor" Style="{StaticResource TitleStyle}"/>
+			<Label Grid.Row="0" Grid.Column="0" Text="Label" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="0" Grid.Column="1" Text="Button" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="0" Grid.Column="2" Text="Entry" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="2" Grid.Column="0" Text="SearchBar" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="2" Grid.Column="1" Text="ProgressBar" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="2" Grid.Column="2" Text="Picker" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="4" Grid.Column="0" Text="Image" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="4" Grid.Column="1" Text="ContentView" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="4" Grid.Column="2" Text="Editor" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="6" Grid.Column="0" Text="Shapes" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="6" Grid.Column="1" Text="Image/RadioButton" Style="{StaticResource TitleStyle}" />
+			<Label Grid.Row="6" Grid.Column="2" Text="Switch/ Slider" Style="{StaticResource TitleStyle}" />
+
 			<!--#endregion-->
 
 			<!--Label-->
 			<StackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
-				<Label Text="Plain text"/>
-				<Label Text="Red color text" TextColor="Red"/>
-				<Label Text="Black Text with Red Background" BackgroundColor="Red"/>
-				<Label Text="Text at the center" HorizontalOptions="Center"/>
+				<Label Text="Plain text" />
+				<Label Text="Red color text" TextColor="Red" />
+				<Label Text="Black Text with Red Background" BackgroundColor="Red" />
+				<Label Text="Text at the center" HorizontalOptions="Center" />
 			</StackLayout>
 
 			<!--Button-->
 			<StackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
-				<Button BackgroundColor="White" TextColor="LightBlue" Text="Plain Button"/>
-				<Button BackgroundColor="White" TextColor="LightBlue" BorderColor="Black" BorderWidth="3" Text="Button with Border"/>
-				<Button BackgroundColor="Red" TextColor="LightBlue" BorderColor="Black" BorderWidth="3" Text="Button with Border and Red Background"/>
+				<Button BackgroundColor="White" TextColor="LightBlue" Text="Plain Button" />
+				<Button BackgroundColor="White" TextColor="LightBlue" BorderColor="Black" BorderWidth="3"
+						Text="Button with Border" />
+				<Button BackgroundColor="Red" TextColor="LightBlue" BorderColor="Black" BorderWidth="3"
+						Text="Button with Border and Red Background" />
 			</StackLayout>
 
 			<!--Entry-->
 			<StackLayout Grid.Row="1" Grid.Column="2" Spacing="6">
-				<Entry Text="this is sample entry"/>
-				<Entry Placeholder="entry with placeholder"/>
-				<Entry Text="Entry with Red Background" BackgroundColor="Red"/>
+				<Entry Text="this is sample entry" />
+				<Entry Placeholder="entry with placeholder" />
+				<Entry Text="Entry with Red Background" BackgroundColor="Red" />
 			</StackLayout>
 
 			<!--SearchBar-->
 			<StackLayout Grid.Row="3" Grid.Column="0" Spacing="6">
-				<SearchBar Text="SearchBar"/>
-				<SearchBar Placeholder="Searchbar placeholder"/>
+				<SearchBar Text="SearchBar" />
+				<SearchBar Placeholder="Searchbar placeholder" />
 			</StackLayout>
 
-			<ProgressBar Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Progress="0.7"/>
+			<ProgressBar Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Progress="0.7" />
 
-			<Picker x:Name="picker" Grid.Row="3" Grid.Column="2" SelectedIndex="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+			<Picker x:Name="picker" Grid.Row="3" Grid.Column="2" SelectedIndex="0" HorizontalOptions="Center"
+					VerticalOptions="Center" />
 
-			<Image Grid.Row="5" Grid.Column="0" Source="test.jpg"/>
+			<Image Grid.Row="5" Grid.Column="0" Source="test.jpg" />
 
 			<!--ContentView-->
 			<ContentView Grid.Row="5" Grid.Column="1" Margin="20" BackgroundColor="Orange">
-				<Label HorizontalOptions="Center" VerticalOptions="Center" Text="This is text inside an orange ContentView" TextColor="Black"/>
+				<Label HorizontalOptions="Center" VerticalOptions="Center" Text="This is text inside an orange ContentView"
+						TextColor="Black" />
 			</ContentView>
 
-			<Editor Grid.Row="5" Grid.Column="2" Text="Lorem ipsum dolor sit amet"/>
+			<Editor Grid.Row="5" Grid.Column="2" Text="Lorem ipsum dolor sit amet" />
 
+			<!--Shapes-->
+			<StackLayout Grid.Row="7" Grid.Column="0">
+				<Ellipse Stroke="Red" Fill="LightGray" StrokeThickness="3" WidthRequest="50" HeightRequest="25" />
+				<Line Stroke="Orange" StrokeThickness="2" X1="10" X2="250" Y1="25" Y2="30" />
+				<Rectangle Fill="LightGray" Stroke="Red" StrokeThickness="2" WidthRequest="50" HeightRequest="15" />
+			</StackLayout>
 
-			<Button Grid.Row="6" Grid.Column="1" pdf:PdfRendererAttributes.ShouldRender="False" Text="Generate PDF" 
-                        HorizontalOptions="Center" Clicked="GeneratePDF" />
+			<!--Image/Radio Buttons-->
+			<StackLayout Grid.Row="7" Grid.Column="1">
+				<ImageButton Source="test.jpg" WidthRequest="30" HeightRequest="30" BorderColor="Lime" BorderWidth="2" />
+				<RadioButton GroupName="g" Text="Radio Button1" />
+				<RadioButton GroupName="g" Text="Radio Button2" IsChecked="True" />
+				<RadioButton GroupName="g" Text="Radio Button3" />
+			</StackLayout>
+
+			<!--Slider-->
+			<StackLayout Grid.Row="7" Grid.Column="2">
+				<Slider Maximum="100" Value="60" ThumbColor="CadetBlue" />
+				<Switch />
+				<Switch IsToggled="True" />
+			</StackLayout>
+
+			<Button Grid.Row="8" Grid.Column="1" pdf:PdfRendererAttributes.ShouldRender="False" Text="Generate PDF"
+					HorizontalOptions="Center" Clicked="GeneratePDF" />
 		</Grid>
 	</ContentPage.Content>
 </ContentPage>

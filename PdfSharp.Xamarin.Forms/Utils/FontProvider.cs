@@ -10,21 +10,19 @@ namespace PdfSharp.Xamarin.Forms.Utils
 	internal class FontProvider : IFontResolver
 	{
 		#region Properties
-		public string DefaultFontName
-		{
-			get { return "OpenSans"; }
-		}
+		public string DefaultFontName => "OpenSans";
+
 		#endregion
 
 		#region Fields
 		public ICustomFontProvider _fontProvider;
-		public static readonly string[] DefaultFontFiles = new string[]
-			{
-				"OpenSans-Regular.ttf",
-				"OpenSans-Bold.ttf",
-				"OpenSans-Italic.ttf",
-				"OpenSans-BoldItalic.ttf",
-			};
+		public static readonly string[] DefaultFontFiles =
+		{
+			"OpenSans-Regular.ttf",
+			"OpenSans-Bold.ttf",
+			"OpenSans-Italic.ttf",
+			"OpenSans-BoldItalic.ttf",
+		};
 		#endregion
 
 		#region Ctor
@@ -43,7 +41,7 @@ namespace PdfSharp.Xamarin.Forms.Utils
 				Stream stream = assembly.GetManifestResourceStream($"PdfSharp.Xamarin.Forms.DefaultFonts.{faceName}");
 				using (var reader = new StreamReader(stream))
 				{
-					var bytes = default(byte[]);
+					byte[] bytes;
 					using (var memstream = new MemoryStream())
 					{
 						reader.BaseStream.CopyTo(memstream);
