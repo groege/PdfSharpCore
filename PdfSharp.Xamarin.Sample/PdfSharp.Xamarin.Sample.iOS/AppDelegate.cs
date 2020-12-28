@@ -8,6 +8,7 @@ namespace PdfSharp.Xamarin.Sample.iOS
 	{
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
+			global::Xamarin.Forms.Forms.SetFlags("Shapes_Experimental", "RadioButton_Experimental");
 			global::Xamarin.Forms.Forms.Init();
 			PdfSharp.Xamarin.Forms.iOS.Platform.Init();
 			LoadApplication(new PdfSharp.Xamarin.Sample.App());
