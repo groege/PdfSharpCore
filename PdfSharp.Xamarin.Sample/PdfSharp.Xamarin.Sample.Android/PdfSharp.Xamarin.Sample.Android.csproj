@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\packages\Xamarin.Forms.4.8.0.1821\build\Xamarin.Forms.props" Condition="Exists('..\..\packages\Xamarin.Forms.4.8.0.1821\build\Xamarin.Forms.props')" />
   <PropertyGroup>
@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -228,7 +228,7 @@
       <Name>PdfSharpCore</Name>
     </ProjectReference>
     <ProjectReference Include="..\PdfSharp.Xamarin.Sample\PdfSharp.Xamarin.Sample.csproj">
-      <Project>{fc44d6fa-dbe2-4e52-8677-942f2a50181b}</Project>
+      <Project>{A5CCFD54-5154-4BF4-AA46-03937AD7326D}</Project>
       <Name>PdfSharp.Xamarin.Sample</Name>
     </ProjectReference>
   </ItemGroup>
