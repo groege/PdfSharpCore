@@ -13,6 +13,7 @@ using ImageSource = MigraDocCore.DocumentObjectModel.MigraDoc.DocumentObjectMode
 [assembly: InternalsVisibleTo("PdfSharp.Xamarin.Forms.Droid")]
 [assembly: InternalsVisibleTo("PdfSharp.Xamarin.Forms.iOS")]
 [assembly: InternalsVisibleTo("PdfSharp.Xamarin.Forms.UWP")]
+[assembly: InternalsVisibleTo("PdfSharp.Xamarin.Forms.WPF")]
 namespace PdfSharp.Xamarin.Forms
 {
 	public class PDFManager
@@ -20,8 +21,7 @@ namespace PdfSharp.Xamarin.Forms
 		internal static PDFManager Instance { get; private set; }
 
 		private PDFManager()
-		{
-		}
+		{ }
 
 		internal Dictionary<Type, Type> Renderers { get; set; }
 
@@ -60,31 +60,15 @@ namespace PdfSharp.Xamarin.Forms
 			}
 		}
 
-		[Obsolete("use Init(,,rendererAssemblies)")]
-		public static void RegisterRenderer(Type viewType, Type rendererType)
-		{
-			if (Instance == null)
-				throw new InvalidOperationException("You must call Init firsts");
 
-			if (!rendererType.GetTypeInfo().IsSubclassOf(typeof(Renderers.PdfRendererBase)))
-				throw new ArgumentException("Renderertype Must inherit PdfRenderdererBase<View>");
-
-			if (Instance.Renderers.ContainsKey(viewType))
-				Instance.Renderers[viewType] = rendererType;
-			else
-				Instance.Renderers[viewType] = rendererType;
-		}
-
-		public static PdfDocument GeneratePDFFromView(View view, PageOrientation orientaiton = PageOrientation.Portrait, PageSize size = PageSize.A4, bool resizeToFit = true)
+		public static PdfDocument GeneratePDFFromView(View view, PageOrientation orientation = PageOrientation.Portrait, PageSize size = PageSize.A4, bool resizeToFit = true)
 		{
 			if (Instance == null)
 				throw new InvalidOperationException("You must call Init first");
 
-			PdfGenerator generator = new PdfGenerator(view, orientaiton, size, resizeToFit);
-			var pdf = generator.Generate();
+			PdfGenerator generator = new PdfGenerator(view, orientation, size, resizeToFit);
 
-			return pdf;
+			return generator.Generate();
 		}
-
 	}
 }

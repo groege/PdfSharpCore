@@ -10,23 +10,28 @@ namespace PdfSharp.Xamarin.Forms.Renderers
 	{
 		public override async void CreatePDFLayout(XGraphics page, Image image, XRect bounds, double scaleFactor)
 		{
-			if (image.BackgroundColor != default(Color))
+			if (image.BackgroundColor != default)
 				page.DrawRectangle(image.BackgroundColor.ToXBrush(), bounds);
 
 			if (image.Source == null)
 				return;
 
-			string imageSource = string.Empty;
 			XImage img = null;
 
-			if (image.Source is FileImageSource)
-				img = XImage.FromFile((image.Source as FileImageSource).File);
-			else if (image.Source is UriImageSource)
-				img = XImage.FromFile((image.Source as UriImageSource).Uri.AbsolutePath);
-			else if (image.Source is StreamImageSource)
+			switch (image.Source)
 			{
-				var stream = await (image.Source as StreamImageSource).Stream.Invoke(new System.Threading.CancellationToken());
-				img = XImage.FromStream(() => stream);
+				case FileImageSource fileImageSource:
+					img = XImage.FromFile(fileImageSource.File);
+					break;
+				case UriImageSource uriImageSource:
+					img = XImage.FromFile(uriImageSource.Uri.AbsolutePath);
+					break;
+				case StreamImageSource streamImageSource:
+				{
+					var stream = await streamImageSource.Stream.Invoke(new System.Threading.CancellationToken());
+					img = XImage.FromStream(() => stream);
+					break;
+				}
 			}
 
 			XRect desiredBounds = bounds;
@@ -36,15 +41,15 @@ namespace PdfSharp.Xamarin.Forms.Renderers
 					desiredBounds = bounds;
 					break;
 				case Aspect.AspectFit:
-					{
-						double aspectRatio = ((double)img.PixelWidth) / img.PixelHeight;
-						if (aspectRatio > (bounds.Width / bounds.Height))
-							desiredBounds.Height = desiredBounds.Width * aspectRatio;
-						else
-							desiredBounds.Width = desiredBounds.Height * aspectRatio;
-					}
+				{
+					double aspectRatio = ((double) img.PixelWidth) / img.PixelHeight;
+					if (aspectRatio > (bounds.Width / bounds.Height))
+						desiredBounds.Height = desiredBounds.Width * aspectRatio;
+					else
+						desiredBounds.Width = desiredBounds.Height * aspectRatio;
+				}
 					break;
-				//PdfSharp does not support drawing a portion pf image, its not supported 
+				//PdfSharp does not support drawing a portion pf image, its not supported
 				case Aspect.AspectFill:
 					desiredBounds = bounds;
 					break;
@@ -52,6 +57,5 @@ namespace PdfSharp.Xamarin.Forms.Renderers
 
 			page.DrawImage(img, desiredBounds, new System.Threading.CancellationToken());
 		}
-
 	}
 }

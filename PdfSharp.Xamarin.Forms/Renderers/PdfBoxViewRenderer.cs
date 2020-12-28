@@ -10,10 +10,10 @@ namespace PdfSharp.Xamarin.Forms.Renderers
 	{
 		public override void CreatePDFLayout(XGraphics page, BoxView box, XRect bounds, double scaleFactor)
 		{
-			if (box.BackgroundColor != default(Color))
+			if (box.BackgroundColor != default)
 				page.DrawRectangle(box.BackgroundColor.ToXBrush(), bounds);
 
-			if (box.Color != default(Color))
+			if (box.Color != default)
 				page.DrawRectangle(box.Color.ToXBrush(), bounds);
 		}
 	}

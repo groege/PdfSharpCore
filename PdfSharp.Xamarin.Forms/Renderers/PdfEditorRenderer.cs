@@ -11,8 +11,7 @@ namespace PdfSharp.Xamarin.Forms.Renderers
 	{
 		public override void CreatePDFLayout(XGraphics page, Editor editor, XRect bounds, double scaleFactor)
 		{
-
-			if (editor.BackgroundColor != default(Color))
+			if (editor.BackgroundColor != default)
 				page.DrawRectangle(editor.BackgroundColor.ToXBrush(), bounds);
 
 			//Border
@@ -20,13 +19,15 @@ namespace PdfSharp.Xamarin.Forms.Renderers
 
 			if (!string.IsNullOrEmpty(editor.Text))
 			{
-				Color textColor = editor.TextColor != default(Color) ? editor.TextColor : Color.Black;
-				XFont font = new XFont(editor.FontFamily ?? GlobalFontSettings.FontResolver.DefaultFontName, editor.FontSize * scaleFactor);
+				var textColor = editor.TextColor != default ? editor.TextColor : Color.Black;
+				var font = new XFont(editor.FontFamily ?? GlobalFontSettings.FontResolver.DefaultFontName,
+					editor.FontSize * scaleFactor);
 				page.DrawString(editor.Text, font, textColor.ToXBrush(), bounds.AddMargin(5 * scaleFactor),
-				new XStringFormat {
-					Alignment = XStringAlignment.Near,
-					LineAlignment = XLineAlignment.Near,
-				});
+					new XStringFormat
+					{
+						Alignment = XStringAlignment.Near,
+						LineAlignment = XLineAlignment.Near,
+					});
 			}
 		}
 	}

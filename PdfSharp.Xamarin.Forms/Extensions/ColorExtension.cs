@@ -7,10 +7,14 @@ namespace PdfSharp.Xamarin.Forms.Extensions
 	{
 		public static XColor ToXColor(this Color color)
 		{
-			if (color == default(Color))
+			if (color == default)
 				return XColors.Transparent;
 
-			return XColor.FromArgb((int)(color.A * 255), (int)(color.R * 255), (int)(color.G * 255), (int)(color.B * 255));
+			return XColor.FromArgb(
+				(int) (color.A * 255),
+				(int) (color.R * 255),
+				(int) (color.G * 255),
+				(int) (color.B * 255));
 		}
 
 		public static XBrush ToXBrush(this Color color)
